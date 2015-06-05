@@ -25,8 +25,9 @@ class Song(Base):
 
     name =Column(String(80), nullable = False)
     id = Column(Integer, primary_key = True)
-    band_name = Column(String())
+    band_name = Column(String(80))
     country = Column(String(80))
+    youtube_url = Column(String(250))
     genre_id = Column(Integer,ForeignKey('genre.id'))
     genre = relationship(Genre)
 
@@ -38,7 +39,8 @@ class Song(Base):
            'name'         : self.name,
            'id'         : self.id,
            'band_name'	: self.band_name,
-           'country'	: self.country
+           'country'	: self.country,
+           'youtube_url'	: self.youtube_url
        }
 
 engine = create_engine('sqlite:///musicdump.db')
