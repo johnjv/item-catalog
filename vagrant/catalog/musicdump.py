@@ -24,34 +24,34 @@ loopingGenre = Genre(name = "looping")
 session.add(loopingGenre)
 session.commit()
 
-song1 = Song(name = "",
-			band_name = "",
-			country = "",
-			youtube_url = "",
+song1 = Song(name = "Retcon",
+			band_name = "Mylets",
+			country = "US",
+			youtube_url = "https://www.youtube.com/watch?v=GJ9OQLovpr4",
 			genre = loopingGenre)
 session.add(song1)
 session.commit()
 
-song2 = Song(name = "",
-			band_name = "",
-			country = "",
-			youtube_url = "",
+song2 = Song(name = "Indian Winter",
+			band_name = "El Ten Eleven",
+			country = "US",
+			youtube_url = "https://www.youtube.com/watch?v=mTkPfjSXFpo",
 			genre = loopingGenre)
 session.add(song2)
 session.commit()
 
-song3 = Song(name = "",
-			band_name = "",
-			country = "",
-			youtube_url = "",
+song3 = Song(name = "Emulsifaction",
+			band_name = "Reggie Watts",
+			country = "US",
+			youtube_url = "https://www.youtube.com/watch?v=HXhZAigtFTE",
 			genre = loopingGenre)
 session.add(song3)
 session.commit()
 
-song4 = Song(name = "",
-			band_name = "",
-			country = "",
-			youtube_url = "",
+song4 = Song(name = "Toe Tore Oh",
+			band_name = "Dustin Wong",
+			country = "Japan",
+			youtube_url = "https://www.youtube.com/watch?v=j1PuWrE9nKY",
 			genre = loopingGenre)
 session.add(song4)
 session.commit()
@@ -60,34 +60,34 @@ session.commit()
 # Video games genre music dump
 videoGameGenre = Genre(name = "video game")
 
-song1 = Song(name = "",
-			band_name = "",
-			country = "",
-			youtube_url = "",
+song1 = Song(name = "Manlorette Party",
+			band_name = "Staypuft",
+			country = "US",
+			youtube_url = "https://www.youtube.com/watch?v=254sCXAaZNE",
 			genre = videoGameGenre)
 session.add(song1)
 session.commit()
 
-song2 = Song(name = "",
-			band_name = "",
-			country = "",
-			youtube_url = "",
+song2 = Song(name = "Adventure",
+			band_name = "Disasterpeace",
+			country = "US",
+			youtube_url = "https://www.youtube.com/watch?v=76GnOwHorn0",
 			genre = videoGameGenre)
 session.add(song2)
 session.commit()
 
-song3 = Song(name = "",
-			band_name = "",
-			country = "",
-			youtube_url = "",
+song3 = Song(name = "Lone Star",
+			band_name = "Jim Guthrie",
+			country = "Canada",
+			youtube_url = "https://www.youtube.com/watch?v=wOOqdRsbHKA",
 			genre = videoGameGenre)
 session.add(song3)
 session.commit()
 
-song4 = Song(name = "",
-			band_name = "",
-			country = "",
-			youtube_url = "",
+song4 = Song(name = "Minecraft",
+			band_name = "C418",
+			country = "Germany",
+			youtube_url = "https://www.youtube.com/watch?v=qq-RGFyaq0U",
 			genre = videoGameGenre)
 session.add(song4)
 session.commit()
@@ -95,36 +95,34 @@ session.commit()
 # Mathematical genre music dump
 mathematicalGenre = Genre(name = "mathematical")
 
-song1 = Song(name = "",
-			band_name = "",
-			country = "",
-			youtube_url = "",
+song1 = Song(name = "Abraxical Solapse",
+			band_name = "Physics House Band",
+			country = "UK",
+			youtube_url = "https://www.youtube.com/watch?v=rdxZ4eoLMn4",
 			genre = mathematicalGenre)
 session.add(song1)
 session.commit()
 
-song2 = Song(name = "",
-			band_name = "",
-			country = "",
-			youtube_url = "",
+song2 = Song(name = "Bond",
+			band_name = "LITE",
+			country = "Japan",
+			youtube_url = "https://www.youtube.com/watch?v=BlWiRjIcjOk",
 			genre = mathematicalGenre)
 session.add(song2)
 session.commit()
 
-song3 = Song(name = "",
-			band_name = "",
-			country = "",
-			youtube_url = "",
+song3 = Song(name = "40 Rods to the Hog's Head",
+			band_name = "Tera Melos",
+			country = "US",
+			youtube_url = "https://www.youtube.com/watch?v=-FypjUkPfYE",
 			genre = mathematicalGenre)
 session.add(song3)
 session.commit()
 
-song4 = Song(name = "",
-			band_name = "",
-			country = "",
-			youtube_url = "",
+song4 = Song(name = "Little Bubble, Where You Going?",
+			band_name = "Piglet",
+			country = "US",
+			youtube_url = "https://www.youtube.com/watch?v=OllEOofj4O8",
 			genre = mathematicalGenre)
 session.add(song4)
 session.commit()
-
-
