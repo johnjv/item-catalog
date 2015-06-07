@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, jsonify, url_for, flash
-from sqlalchemy import create_engine
-from sqlalchemy.orm import session
+from sqlalchemy import create_engine, asc
+from sqlalchemy.orm import sessionmaker
+from database_setup import Base, Genre, Song
 
 app = Flask(__name__)
 
@@ -12,27 +13,28 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 # JSON APIs to view music dump
-@app.route('/genre/<int:genre_id>/dump/JSON')
-def genreSongsJSON:
+@app.route('/genre/<int:genre_id>/JSON')
+def genreSongsJSON(genre_id):
 	genre = session.query(Genre).filter_by(id = genre_id).one()
-	songs = session.query(Songs).filter_by(genre_id = genre_id).all()
+	songs = session.query(Song).filter_by(genre_id = genre_id).all()
 	return jsonify(songs = [i.serialize for i in songs])
 
-@app.route('/genre/<int:genre_id>/dump/<int:song_id>/JSON')
+@app.route('/genre/<int:genre_id>/<int:song_id>/JSON')
 def songJSON(genre_id, song_id):
-    song = session.query(Songs).filter_by(id = song_id).one()
+    song = session.query(Song).filter_by(id = song_id).one()
     return jsonify(song = song.serialize)
 
-@app.route('/genres/JSON')
-@app.route('/genres/dump/JSON')
+@app.route('/genre/JSON')
 def genresJSON():
     genres = session.query(Genre).all()
-    return jsonify(genres = [r.serialize for r in genres])
+    return jsonify(genres = [i.serialize for i in genres])
 
-
+# Show all of music dump
 @app.route('/')
-def HelloWorld():
-	return "Hello World"
+def homepage():
+	songs = session.query(Song).order_by(asc(Song.name))
+	# return jsonify(songs = [i.serialize for i in songs])
+	return render_template('songs.html', songs = songs)
 
 if __name__ == '__main__':
 	app.debug = True
