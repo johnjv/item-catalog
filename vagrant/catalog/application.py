@@ -49,13 +49,13 @@ def newGenre():
 		return render_template('new-genre.html')
 
 # Edit a genre
-@app route('/genre/<int:genre_id>/edit/', methods = ['GET', 'POST'])
+@app.route('/genre/<int:genre_id>/edit/', methods = ['GET', 'POST'])
 def editGenre(genre_id):
 	editedGenre = session.query(Genre).filter_by(id = genre_id).one()
 	if request.method == 'POST':
 		if request.form['name']:
 			editedGenre.name = request.form['name']
-			flash('Genre successfully edited %s', % editedGenre.name)
+			flash('Genre successfully edited %s' % editedGenre.name)
 			return redirect(url_for('showGenres'))
 		else:
 			return render_template('edit-genre.html', genre = editedGenre)
@@ -64,7 +64,7 @@ def editGenre(genre_id):
 @app.route('/genre/<int:genre_id>/delete/', methods = ['GET', 'POST'])
 def deleteGenre(genre_id):
 	genreToDelete = session.query(Genre).filter_by(id = genre_id).one()
-	if request.method = 'POST':
+	if request.method == 'POST':
 		session.delete(genreToDelete)
 		flash('%s successfully deleted' % genreToDelete.name)
 		session.commit()
@@ -84,7 +84,7 @@ def showSongs(genre_id):
 @app.route('/genre/<int:genre_id>/songs/new/', methods = ['GET', 'POST'])
 def newSong(genre_id):
 	genre = session.query(Genre).filter_by(id = genre_id).one()
-	if request.method = 'POST':
+	if request.method == 'POST':
 		newSong = Song(name = request.form[name],
 					   band_name = request.form[band_name],
 					   country = request.form[country],
@@ -118,11 +118,11 @@ def editSong(genre_id, song_id):
 		return render_template('edit-song.html', genre_id = genre_id, song_id = song_id, item = editedSong)
 
 # Delete a song
-@app.route('/genre/<int:genre_id/songs/<int:song_id>/delete', methods = ['GET', 'POST'])
+@app.route('/genre/<int:genre_id>/songs/<int:song_id>/delete', methods = ['GET', 'POST'])
 def deleteSong(genre_id, song_id):
 	genre = session.query(Genre).filter_by(id = genre_id).one()
 	songToDelete = session.query(Song).filter_by(id = song_id).one()
-	if request.method = 'POST':
+	if request.method == 'POST':
 		session.delete(songToDelete)
 		session.commit()
 		flash('Song successfully deleted')
