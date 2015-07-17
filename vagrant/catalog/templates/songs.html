@@ -1,34 +1,33 @@
 {% extends "main.html" %} {% block content %} {% include "header.html" %}
-<div class="jumbotron">
-    <h1>Welcome to the Music Dump!!</h1>
-    <p>Here you can find a variety of music spanning a wide variety of genres and themes. Feel free to post your own!</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Dump a Track</a></p>
+<div class="mdl-layout typography--text-center">
+  <h1>Welcome to the Music Dump!!</h1>
+  <p>Here you can find a variety of music spanning a wide variety of genres and themes. Feel free to login and post your own!</p>
 </div>
 {% for song in songs %}
-<div class="media">
-    <div class="media-left">
-        <div class="embed-responsive embed-responsive-16by9">
-        	<div id="ytplayer{{song.id}}"></div>
-            <script>
-            // get youtube id from song.youtube_url
-            url = "{{song.youtube_url}}";
-            youtubeIdMatch = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-            console.log(youtubeIdMatch[1]);
-            var playerId = 'ytplayer' + '{{song.id}}';
-            console.log(playerId);
-            $(document).ready(function() {
-            	var player = new YT.Player(playerId, {
-	                height: '390',
-	                width: '640',
-	                videoId: youtubeIdMatch[1]
-	            });
-            });
-            </script>
-        </div>
-    </div>
-    <div class="media-body">
-        <h4 class="media-heading">{{song.name}}</h4><span>&nbsp;&nbsp;{{song.country}}</span>
-        <p></p>
-    </div>
+<div class="mdl-card mdl-shadow--2dp card-song">
+  <div class="mdl-car__title mdl-card--expand">
+    <h3 class="mdl-card__title-text">{{song.name}}</h4>
+    <p class="mdl-card__supporting-text">{{song.country}}</p>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{song.youtube_url}}" target="_blank">Listen</a>
+  </div>
 </div>
+<!-- temporarily removing, may bring back later
+<script>
+  // get youtube id from song.youtube_url
+  url = "{{song.youtube_url}}";
+  youtubeIdMatch = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+  console.log(youtubeIdMatch[1]);
+  var playerId = 'ytplayer' + '{{song.id}}';
+  console.log(playerId);
+  $(document).ready(function() {
+    var player = new YT.Player(playerId, {
+      height: '390',
+      width: '640',
+      videoId: youtubeIdMatch[1]
+    });
+  });
+</script>
+-->
 {% endfor %} {% endblock %}
