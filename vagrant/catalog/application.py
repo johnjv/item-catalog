@@ -20,7 +20,7 @@ def showLogin():
 	state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in xrange(32))
 	# store it in session for later use
 	login_session['state'] = state
-	return "The current session state is %s" % login_session['state']
+	return render_template('login.html')
 
 # JSON APIs to view music dump
 @app.route('/genre/<int:genre_id>/JSON')
