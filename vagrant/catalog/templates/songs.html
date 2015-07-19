@@ -1,33 +1,36 @@
 {% extends "main.html" %} {% block content %} {% include "header.html" %}
-<div class="mdl-layout typography--text-center">
-  <h1>Welcome to the Music Dump!!</h1>
-  <p>Here you can find a variety of music spanning a wide variety of genres and themes. Feel free to login and post your own!</p>
+<div class="mdl-grid typography--text-center">
+  <header class="mdl-cell mdl-cell--12-col">
+    <h1>Welcome to the Music&nbsp;Dump!!</h1>
+    <p>Here you can find a variety of music spanning a wide variety of genres and themes. Feel free to login and post your own!</p>
+  </header>
 </div>
-{% for song in songs %}
-<div class="mdl-card mdl-shadow--2dp card-song">
-  <div class="mdl-car__title mdl-card--expand">
-    <h3 class="mdl-card__title-text">{{song.name}}</h4>
-    <p class="mdl-card__supporting-text">{{song.country}}</p>
+<div class="mdl-grid">
+  {% for song in songs %}
+  <div class="mdl-cell mdl-cell--8-col mdl-cell--6-col-desktop mdl-card mdl-shadow--2dp card-song">
+    <div class="mdl-card__title mdl-card--expand">
+      <h3 class="mdl-card__title-text">{{song.name}}</h4>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{song.youtube_url}}" target="_blank">Listen</a>
+    </div>
   </div>
-  <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{song.youtube_url}}" target="_blank">Listen</a>
-  </div>
-</div>
-<!-- temporarily removing, may bring back later
-<script>
-  // get youtube id from song.youtube_url
-  url = "{{song.youtube_url}}";
-  youtubeIdMatch = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-  console.log(youtubeIdMatch[1]);
-  var playerId = 'ytplayer' + '{{song.id}}';
-  console.log(playerId);
-  $(document).ready(function() {
-    var player = new YT.Player(playerId, {
-      height: '390',
-      width: '640',
-      videoId: youtubeIdMatch[1]
+  <!-- temporarily removing, may bring back later
+  <script>
+    // get youtube id from song.youtube_url
+    url = "{{song.youtube_url}}";
+    youtubeIdMatch = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+    console.log(youtubeIdMatch[1]);
+    var playerId = 'ytplayer' + '{{song.id}}';
+    console.log(playerId);
+    $(document).ready(function() {
+      var player = new YT.Player(playerId, {
+        height: '390',
+        width: '640',
+        videoId: youtubeIdMatch[1]
+      });
     });
-  });
-</script>
--->
-{% endfor %} {% endblock %}
+  </script>
+  -->
+  {% endfor %} {% endblock %}
+</div>
