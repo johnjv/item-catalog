@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect, jsonify, url_for, flash
+from flask import Flask, render_template, request, redirect, jsonify, url_for, flash, session as login_session
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Genre, Song
+import random, string
 
 app = Flask(__name__)
 
@@ -11,6 +12,15 @@ Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+
+# Login route
+@app.route('/login')
+def showLogin():
+	# create a state token to prevent request forgery
+	state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in xrange(32))
+	# store it in session for later use
+	login_session['state'] = state
+	return "The current session state is %s" % login_session['state']
 
 # JSON APIs to view music dump
 @app.route('/genre/<int:genre_id>/JSON')
@@ -132,5 +142,6 @@ def deleteSong(genre_id, song_id):
 
 
 if __name__ == '__main__':
+	app.secret_key = "secret key"
 	app.debug = True
 	app.run(host = '0.0.0.0', port = 8000)
