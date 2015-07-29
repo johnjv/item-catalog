@@ -161,8 +161,9 @@ def genresJSON():
 @app.route('/')
 def showGenres():
 	songs = session.query(Song).order_by(asc(Song.name))
+	genres = session.query(Genre).order_by(asc(Genre.name))
 	# return jsonify(songs = [i.serialize for i in songs])
-	return render_template('songs.html', songs = songs)
+	return render_template('songs.html', songs = songs, genres = genres)
 
 # Create a new music genre
 @app.route('/genre/new', methods=['GET','POST'])
@@ -205,8 +206,9 @@ def deleteGenre(genre_id):
 @app.route('/genre/<int:genre_id>/songs/')
 def showSongs(genre_id):
 	genre = session.query(Genre).filter_by(id = genre_id).one()
-	songs = session.genre(Song).filter_by(genre_id = genre_id).all()
-	return render_template(song.html, songs = songs, genre = genre)
+	genres = session.query(Genre).order_by(asc(Genre.name))
+	songs = session.query(Song).filter_by(genre_id = genre_id).all()
+	return render_template('songs.html', songs = songs, genre = genre, genres = genres)
 
 # Create a new song for a genre
 @app.route('/genre/<int:genre_id>/songs/new/', methods = ['GET', 'POST'])
