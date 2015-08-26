@@ -189,12 +189,16 @@ def genresJSON():
 def showGenres():
 	songs = session.query(Song).order_by(asc(Song.name))
 	genres = session.query(Genre).order_by(asc(Genre.name))
-	# return jsonify(songs = [i.serialize for i in songs])
-	return render_template('songs.html', songs = songs, genres = genres)
+	if 'username' not in login_session:
+		return render_template('publicsongs.html', songs = songs, genres = genres)
+	else:
+		return render_template('songs.html', songs = songs, genres = genres)
 
 # Create a new music genre
 @app.route('/genre/new', methods=['GET','POST'])
 def newGenre():
+	if 'username' not in login_session:
+		return redirect('/login')
 	if request.method == 'POST':
 		newGenre = Genre(name = request.form['name'],
 						 user_id=login_session['user_id'])
@@ -209,6 +213,12 @@ def newGenre():
 @app.route('/genre/<int:genre_id>/edit/', methods = ['GET', 'POST'])
 def editGenre(genre_id):
 	editedGenre = session.query(Genre).filter_by(id = genre_id).one()
+	if 'username' not in login_session:
+		return redirect('/login')
+	if editedGenre.user_id != login_session['user_id']:
+		return """<script>(function {alert('You are not authorized
+				to edit this genre. Please create your own genre
+				in order to edit.');})();</script>"""
 	if request.method == 'POST':
 		if request.form['name']:
 			editedGenre.name = request.form['name']
@@ -221,6 +231,12 @@ def editGenre(genre_id):
 @app.route('/genre/<int:genre_id>/delete/', methods = ['GET', 'POST'])
 def deleteGenre(genre_id):
 	genreToDelete = session.query(Genre).filter_by(id = genre_id).one()
+	if 'username' not in login_session:
+		return redirect('/login')
+	if genreToDelete.user_id != login_session['user_id']:
+		return """<script>(function {alert('You are not authorized
+				to delete this genre. Please create your own genre
+				in order to delete.');})();</script>"""
 	if request.method == 'POST':
 		session.delete(genreToDelete)
 		flash('%s successfully deleted' % genreToDelete.name)
@@ -235,13 +251,22 @@ def deleteGenre(genre_id):
 def showSongs(genre_id):
 	genre = session.query(Genre).filter_by(id = genre_id).one()
 	genres = session.query(Genre).order_by(asc(Genre.name))
+	creator = getUserInfo(genre.user_id)
 	songs = session.query(Song).filter_by(genre_id = genre_id).all()
-	return render_template('songs.html', songs = songs, genre = genre, genres = genres)
+	if 'username' not in login_session or creator.id !=
+		login_session['user_id']:
+		return render_template('publicsongs.html', songs = songs,
+			genre = genre, genres = genres, creator = creator)
+	else:
+		return render_template('songs.html', songs = songs,
+		 	genre = genre, genres = genres, creator = creator)
 
 # Create a new song for a genre
 @app.route('/genre/<int:genre_id>/songs/new/', methods = ['GET', 'POST'])
 def newSong(genre_id):
 	genre = session.query(Genre).filter_by(id = genre_id).one()
+	if 'username' not in login_session:
+		return redirect('/login')
 	if request.method == 'POST':
 		newSong = Song(name = request.form[name],
 					   band_name = request.form[band_name],
@@ -260,6 +285,12 @@ def newSong(genre_id):
 def editSong(genre_id, song_id):
 	editedSong = session.query(Song).filter_by(id = song_id).one()
 	genre = session.query(Genre).filter_by(id = genre_id).one()
+	if 'username' not in login_session:
+		return redirect('/login')
+	if editedSong.user_id != login_session['user_id']:
+		return """<script>(function {alert('You are not authorized
+				to edit this song. Please create your own song
+				in order to edit.');})();</script>"""
 	if request.method == 'POST':
 		if request.form['name']:
 			editedSong.name = request.form['name']
@@ -281,6 +312,12 @@ def editSong(genre_id, song_id):
 def deleteSong(genre_id, song_id):
 	genre = session.query(Genre).filter_by(id = genre_id).one()
 	songToDelete = session.query(Song).filter_by(id = song_id).one()
+	if 'username' not in login_session:
+		return redirect('/login')
+	if songToDelete.user_id != login_session['user_id']:
+		return """<script>(function {alert('You are not authorized
+				to delete this song. Please create your own song
+				in order to delete.');})();</script>"""
 	if request.method == 'POST':
 		session.delete(songToDelete)
 		session.commit()
