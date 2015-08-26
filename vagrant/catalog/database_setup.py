@@ -39,8 +39,8 @@ class Song(Base):
     youtube_url = Column(String(250))
     genre_id = Column(Integer,ForeignKey('genre.id'))
     genre = relationship(Genre)
-	user_id = Column(Integer, ForeignKey('user.id'))
-	user = relationship(User)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
 
     @property
     def serialize(self):
