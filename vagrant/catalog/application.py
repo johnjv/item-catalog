@@ -190,7 +190,8 @@ def showGenres():
 @app.route('/genre/new', methods=['GET','POST'])
 def newGenre():
 	if request.method == 'POST':
-		newGenre = Genre(name = request.form['name'])
+		newGenre = Genre(name = request.form['name'],
+						 user_id=login_session['user_id'])
 		session.add(newGenre)
 		flash('Succesfully added %s genre' % newGenre.name)
 		session.commit()
@@ -239,7 +240,8 @@ def newSong(genre_id):
 		newSong = Song(name = request.form[name],
 					   band_name = request.form[band_name],
 					   country = request.form[country],
-					   youtube_url = request.form[youtube_url])
+					   youtube_url = request.form[youtube_url],
+					   user_id=login_session['user_id'])
 		session.add(newSong)
 		session.commit()
 		flash('New song %s successfully created' % (newSong.name))
