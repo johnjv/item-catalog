@@ -5,11 +5,21 @@ from sqlalchemy import create_engine
 
 Base = declarative_base()
 
+class User(Base):
+	__tablename__ = 'user'
+
+	id = Column(Integer, primary_key=True)
+	name = Column(String(250), nullable=False)
+	email = Column(String(250), nullable=False)
+	picture = Column(String(250))
+
 class Genre(Base):
 	__tablename__ = 'genre'
 
 	id = Column(Integer, primary_key=True)
 	name = Column(String(80), nullable=False)
+	user_id = Column(Integer, ForeignKey('user.id'))
+	user = relationship(User)
 
 	@property
 	def serialize(self):
@@ -22,7 +32,6 @@ class Genre(Base):
 class Song(Base):
     __tablename__ = 'band'
 
-
     name =Column(String(80), nullable = False)
     id = Column(Integer, primary_key = True)
     band_name = Column(String(80))
@@ -30,7 +39,8 @@ class Song(Base):
     youtube_url = Column(String(250))
     genre_id = Column(Integer,ForeignKey('genre.id'))
     genre = relationship(Genre)
-
+	user_id = Column(Integer, ForeignKey('user.id'))
+	user = relationship(User)
 
     @property
     def serialize(self):
@@ -43,6 +53,6 @@ class Song(Base):
            'youtube_url'	: self.youtube_url
        }
 
-engine = create_engine('sqlite:///musicdump.db')
+engine = create_engine('sqlite:///musicdumpwithusers.db')
 
 Base.metadata.create_all(engine)
