@@ -16,6 +16,11 @@
 
 <body>
     <div class="container">
+    	{%if 'username' in session %}
+	        <a id="fab" href="{{url_for('newGenre')}}" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+			    <i class="material-icons">add</i>
+			  </a>
+		{% endif %}
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
             <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row">
