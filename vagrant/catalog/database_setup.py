@@ -53,6 +53,6 @@ class Song(Base):
            'youtube_url'	: self.youtube_url
        }
 
-engine = create_engine('sqlite:///musicdumpwithusers.db')
+engine = create_engine('sqlite:///musicdump.db')
 
 Base.metadata.create_all(engine)

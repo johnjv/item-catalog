@@ -1,7 +1,7 @@
 {% extends "main.html" %} {% block content %} <!-- {% include "header.html" %} -->
 <div class="mdl-grid typography--text-center">
   <header class="mdl-cell mdl-cell--12-col">
-    <h1>Welcome to the Music&nbsp;Dump!!</h1>
+    <h1>Welcome User</h1>
     <p>Here you can find a variety of music spanning a wide variety of genres and themes. Feel free to login and post your own!</p>
   </header>
 </div>
@@ -14,6 +14,8 @@
     <div class="mdl-card__supporting-text">{{song.band_name}}</div>
     <div class="mdl-card__actions mdl-card--border">
       <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{song.youtube_url}}" target="_blank">Listen</a>
+      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{url_for('editSong', genre_id = song.genre_id, song_id = song.id)}}">Edit</a>
+      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{url_for('deleteSong', genre_id = song.genre_id, song_id = song.id)}}">Delete</a>
     </div>
   </div>
   <!-- temporarily removing, may bring back later

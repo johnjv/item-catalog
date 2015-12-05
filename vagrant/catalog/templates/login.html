@@ -29,7 +29,7 @@
                     if (result) {
                         $('#result').html('Login Successful!</br>' + result + '</br>Redirecting...')
                         setTimeout(function() {
-                            window.location.href = "/songs";
+                            window.location.href = "/";
                         }, 4000);
                     } else if (authResult['error']) {
                         console.log('There was an error: ' + authResult['error']);
@@ -83,7 +83,7 @@
                     if (result) {
                         $('#result').html('Login Successful!</br>' + result + '</br>Redirecting...')
                         setTimeout(function() {
-                            window.location.href = "/restaurant";
+                            window.location.href = "/";
                         }, 4000);
 
                     } else {

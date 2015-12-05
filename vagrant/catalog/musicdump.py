@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 
 from database_setup import Genre, Base, Song, User
 
-engine = create_engine('sqlite:///musicdumpwithusers.db')
+engine = create_engine('sqlite:///musicdump.db')
 # Bind the engine to the metadata of the Base class so that the
 # declaratives can be accessed through a DBSession instance
 Base.metadata.bind = engine
@@ -22,6 +22,16 @@ session = DBSession()
 User1 = User(name="Robo Barista", email="tinnyTim@udacity.com",
              picture='https://pbs.twimg.com/profile_images/2671170543/18debd694829ed78203a5a36dd364160_400x400.png')
 session.add(User1)
+session.commit()
+
+User2 = User(name="Robo HARI", email="tinnadasdHIHDAyTim@udacity.com",
+             picture='https://pbs.twimgdaSD.com/profile_images/2671170543/18debd694829ed78203a5a36dd364160_400x400.png')
+session.add(User2)
+session.commit()
+
+User3 = User(name="Robo 324", email="s234fsdf@udacity.com",
+             picture='https://pbs.twimdgdaSD.com/profile_images/2671170543/18debd694829ed78203a5a36dd364160_400x400.png')
+session.add(User3)
 session.commit()
 
 # Looping genre music dump
