@@ -35,7 +35,7 @@ session = DBSession()
 
 
 @app.route('/login')
-def showLogin():
+def login():
     # create a state token to prevent request forgery
     state = ''.join(random.choice(
         string.ascii_uppercase + string.digits) for x in xrange(32))
@@ -242,8 +242,8 @@ def fbdisconnect():
     return "you have been logged out"
 
 # Disconnect based on provider
-@app.route('/disconnect')
-def disconnect():
+@app.route('/logout')
+def logout():
     if 'provider' in login_session:
         if login_session['provider'] == 'google':
             gdisconnect()

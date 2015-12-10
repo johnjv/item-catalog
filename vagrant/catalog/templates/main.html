@@ -26,12 +26,12 @@
                 <div class="mdl-layout__header-row">
                     <div class="mdl-layout-spacer"></div>
 			        {%if 'username' not in session %}
-			        <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" href="{{url_for('showLogin')}}">
+			        <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" href="{{url_for('login')}}">
 					  Login
 					</a>
 						
 					{% else %}
-					<a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" href="{{url_for('disconnect')}}">
+					<a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" href="{{url_for('logout')}}">
 					  Logout
 					</a>
 						
