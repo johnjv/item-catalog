@@ -34,6 +34,7 @@
                 type: "POST",
                 url: "/gconnect?state={{STATE}}",
                 processData: false,
+                data: authResult['code'],
                 contentType: "application/octet-stream; charset=utf-8",
                 success: function(result) {
                     if (result) {
@@ -74,7 +75,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
-    // Here we run a very simple test of the Graph API after login is successful.  
+    // Here we run a very simple test of the Graph API after login is successful.
     //See statusChangeCallback() for when this call is made.
     function sendTokenToServer() {
         var access_token = FB.getAuthResponse()['accessToken'];
