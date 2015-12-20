@@ -1,0 +1,22 @@
+{% extends "main.html" %} {% block content %}
+<!-- {% include "header.html" %} -->
+<div class="mdl-grid typography--text-center">
+    <header class="mdl-cell mdl-cell--12-col">
+        <h2>Are you sure you want to delete this song?</h2>
+    </header>
+</div>
+<div class="demo-container mdl-grid">
+    <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+    <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+        <form action="#" method="post" autocomplete="on">
+            <div>
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                    Delete
+                </button>
+            </div>
+        </form>
+        <a href = '{{url_for('showSongs')}}'>Cancel</a>
+    </div>
+</div>
+{% endfor %} {% endblock %}
+</div>
