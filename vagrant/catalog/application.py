@@ -334,9 +334,7 @@ def editGenre(genre_id):
     if 'username' not in login_session:
         return redirect('/login')
     if editedGenre.user_id != login_session['user_id']:
-        return """<script>(function {alert('You are not authorized
-                to edit this genre. Please create your own genre
-                in order to edit.');})();</script>"""
+        return """<script>(function() {alert("not authorized");})();</script>"""
     if request.method == 'POST':
         if request.form['name']:
             editedGenre.name = request.form['name']
@@ -352,9 +350,7 @@ def deleteGenre(genre_id):
     if 'username' not in login_session:
         return redirect('/login')
     if genreToDelete.user_id != login_session['user_id']:
-        return """<script>(function {alert('You are not authorized
-                to delete this genre. Please create your own genre
-                in order to delete.');})();</script>"""
+        return """<script>(function() {alert("not authorized");})();</script>"""
     if request.method == 'POST':
         session.delete(genreToDelete)
         flash('%s successfully deleted' % genreToDelete.name)
@@ -405,9 +401,7 @@ def editSong(genre_id, song_id):
     if 'username' not in login_session:
         return redirect('/login')
     if editedSong.user_id != login_session['user_id']:
-        return """<script>(function {alert('You are not authorized
-                to edit this song. Please create your own song
-                in order to edit.');})();</script>"""
+        return """<script>(function() {alert("not authorized");})();</script>"""
     if request.method == 'POST':
         if request.form['name']:
             editedSong.name = request.form['name']
@@ -432,9 +426,7 @@ def deleteSong(genre_id, song_id):
     if 'username' not in login_session:
         return redirect('/login')
     if songToDelete.user_id != login_session['user_id']:
-        return """<script>(function {alert('You are not authorized
-                to delete this song. Please create your own song
-                in order to delete.');})();</script>"""
+        return """<script>(function() {alert("not authorized");})();</script>"""
     if request.method == 'POST':
         session.delete(songToDelete)
         session.commit()
