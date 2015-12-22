@@ -35,7 +35,7 @@ session.add(User3)
 session.commit()
 
 # Looping genre music dump
-loopingGenre = Genre(name = "looping")
+loopingGenre = Genre(name = "looping", user_id = 1)
 
 session.add(loopingGenre)
 session.commit()
@@ -44,7 +44,8 @@ song1 = Song(name = "Retcon",
 			band_name = "Mylets",
 			country = "US",
 			youtube_url = "https://www.youtube.com/watch?v=GJ9OQLovpr4",
-			genre = loopingGenre)
+			genre = loopingGenre,
+            user_id = 1)
 session.add(song1)
 session.commit()
 
@@ -52,7 +53,8 @@ song2 = Song(name = "Indian Winter",
 			band_name = "El Ten Eleven",
 			country = "US",
 			youtube_url = "https://www.youtube.com/watch?v=mTkPfjSXFpo",
-			genre = loopingGenre)
+			genre = loopingGenre,
+            user_id = 1)
 session.add(song2)
 session.commit()
 
@@ -60,7 +62,8 @@ song3 = Song(name = "Emulsifaction",
 			band_name = "Reggie Watts",
 			country = "US",
 			youtube_url = "https://www.youtube.com/watch?v=HXhZAigtFTE",
-			genre = loopingGenre)
+			genre = loopingGenre,
+            user_id = 1)
 session.add(song3)
 session.commit()
 
@@ -68,13 +71,14 @@ song4 = Song(name = "Toe Tore Oh",
 			band_name = "Dustin Wong",
 			country = "Japan",
 			youtube_url = "https://www.youtube.com/watch?v=j1PuWrE9nKY",
-			genre = loopingGenre)
+			genre = loopingGenre,
+            user_id = 1)
 session.add(song4)
 session.commit()
 
 
 # Video games genre music dump
-videoGameGenre = Genre(name = "video game")
+videoGameGenre = Genre(name = "video game", user_id = 1)
 
 song1 = Song(name = "Manlorette Party",
 			band_name = "Staypuft",
@@ -109,7 +113,7 @@ session.add(song4)
 session.commit()
 
 # Mathematical genre music dump
-mathematicalGenre = Genre(name = "mathematical")
+mathematicalGenre = Genre(name = "mathematical", user_id = 1)
 
 song1 = Song(name = "Abraxical Solapse",
 			band_name = "Physics House Band",
@@ -131,7 +135,8 @@ song3 = Song(name = "40 Rods to the Hog's Head",
 			band_name = "Tera Melos",
 			country = "US",
 			youtube_url = "https://www.youtube.com/watch?v=-FypjUkPfYE",
-			genre = mathematicalGenre)
+			genre = mathematicalGenre,
+            user_id = 1)
 session.add(song3)
 session.commit()
 
@@ -139,6 +144,7 @@ song4 = Song(name = "Little Bubble, Where You Going?",
 			band_name = "Piglet",
 			country = "US",
 			youtube_url = "https://www.youtube.com/watch?v=OllEOofj4O8",
-			genre = mathematicalGenre)
+			genre = mathematicalGenre,
+            user_id = 1)
 session.add(song4)
 session.commit()
