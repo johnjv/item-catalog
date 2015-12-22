@@ -382,6 +382,7 @@ def newSong(genre_id):
         return redirect('/login')
     if request.method == 'POST':
         newSong = Song(name = request.form['name'],
+                       genre_id = genre_id,
                        band_name = request.form['band_name'],
                        country = request.form['country'],
                        youtube_url = request.form['youtube_url'],
