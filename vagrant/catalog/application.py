@@ -274,7 +274,7 @@ def createUser(login_session):
     return user.id
 
 def getUserInfo(user_id):
-    user = session.query(User).filter_by(id=user_id)
+    user = session.query(User).filter_by(id=user_id).one()
     return user
 
 def getUserID(email):
