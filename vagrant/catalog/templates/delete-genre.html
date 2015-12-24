@@ -15,7 +15,7 @@
                 </button>
             </div>
         </form>
-        <a href = '{{url_for('showSongs')}}'>Cancel</a>
+        <a href="{{url_for('showSongs', genre_id = genre.id)}}">Cancel</a>
     </div>
 </div>
 {% endblock %}
