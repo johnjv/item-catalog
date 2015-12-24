@@ -340,8 +340,8 @@ def editGenre(genre_id):
             editedGenre.name = request.form['name']
             flash('Genre successfully edited %s' % editedGenre.name)
             return redirect(url_for('showGenres'))
-        else:
-            return render_template('edit-genre.html', genre = editedGenre)
+    else:
+        return render_template('edit-genre.html', genre = editedGenre)
 
 # Delete a genre
 @app.route('/genre/<int:genre_id>/delete/', methods = ['GET', 'POST'])
