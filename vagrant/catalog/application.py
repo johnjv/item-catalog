@@ -330,9 +330,9 @@ def newGenre():
 # Edit a genre
 @app.route('/genre/<int:genre_id>/edit/', methods = ['GET', 'POST'])
 def editGenre(genre_id):
-    editedGenre = session.query(Genre).filter_by(id = genre_id).one()
     if 'username' not in login_session:
         return redirect('/login')
+    editedGenre = session.query(Genre).filter_by(id = genre_id).one()
     if editedGenre.user_id != login_session['user_id']:
         return """<script>(function() {alert("not authorized");})();</script>"""
     if request.method == 'POST':
@@ -346,9 +346,9 @@ def editGenre(genre_id):
 # Delete a genre
 @app.route('/genre/<int:genre_id>/delete/', methods = ['GET', 'POST'])
 def deleteGenre(genre_id):
-    genreToDelete = session.query(Genre).filter_by(id = genre_id).one()
     if 'username' not in login_session:
         return redirect('/login')
+    genreToDelete = session.query(Genre).filter_by(id = genre_id).one()
     if genreToDelete.user_id != login_session['user_id']:
         return """<script>(function() {alert("not authorized");})();</script>"""
     if request.method == 'POST':
@@ -377,9 +377,9 @@ def showSongs(genre_id):
 # Create a new song for a genre
 @app.route('/genre/<int:genre_id>/songs/new/', methods = ['GET', 'POST'])
 def newSong(genre_id):
-    genre = session.query(Genre).filter_by(id = genre_id).one()
     if 'username' not in login_session:
         return redirect('/login')
+    genre = session.query(Genre).filter_by(id = genre_id).one()
     if request.method == 'POST':
         newSong = Song(name = request.form['name'],
                        genre_id = genre_id,
@@ -397,10 +397,10 @@ def newSong(genre_id):
 # Edit a song
 @app.route('/genre/<int:genre_id>/song/<int:song_id>/edit', methods = ['GET', 'POST'])
 def editSong(genre_id, song_id):
-    editedSong = session.query(Song).filter_by(id = song_id).one()
-    genre = session.query(Genre).filter_by(id = genre_id).one()
     if 'username' not in login_session:
         return redirect('/login')
+    editedSong = session.query(Song).filter_by(id = song_id).one()
+    genre = session.query(Genre).filter_by(id = genre_id).one()
     if editedSong.user_id != login_session['user_id']:
         return """<script>(function() {alert("not authorized");})();</script>"""
     if request.method == 'POST':
@@ -422,10 +422,10 @@ def editSong(genre_id, song_id):
 # Delete a song
 @app.route('/genre/<int:genre_id>/songs/<int:song_id>/delete', methods = ['GET', 'POST'])
 def deleteSong(genre_id, song_id):
-    genre = session.query(Genre).filter_by(id = genre_id).one()
-    songToDelete = session.query(Song).filter_by(id = song_id).one()
     if 'username' not in login_session:
         return redirect('/login')
+    genre = session.query(Genre).filter_by(id = genre_id).one()
+    songToDelete = session.query(Song).filter_by(id = song_id).one()
     if songToDelete.user_id != login_session['user_id']:
         return """<script>(function() {alert("not authorized");})();</script>"""
     if request.method == 'POST':
